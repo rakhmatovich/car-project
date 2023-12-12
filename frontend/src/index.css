@@ -213,7 +213,7 @@
 .ms-names {
   display: flex;
   justify-content: center;
-  align-items: end;
+  align-items: flex-end;
   margin: 30px 0;
 }
 
@@ -275,7 +275,7 @@
   display: flex;
   justify-content: space-between;
   color: #fff;
-  align-items: end;
+  align-items: flex-end;
 }
 
 .dh-info div h1 {
@@ -762,7 +762,7 @@ input:focus {
 
 .check-field {
   display: flex;
-  align-items: start;
+  align-items: flex-start;
   gap: 10px;
 }
 

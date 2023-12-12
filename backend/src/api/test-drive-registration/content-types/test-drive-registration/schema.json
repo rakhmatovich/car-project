@@ -1,0 +1,30 @@
+{
+  "kind": "collectionType",
+  "collectionName": "test_drive_registrations",
+  "info": {
+    "singularName": "test-drive-registration",
+    "pluralName": "test-drive-registrations",
+    "displayName": "Test drive registration",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "name": {
+      "type": "string"
+    },
+    "phone": {
+      "type": "string"
+    },
+    "comment": {
+      "type": "text"
+    },
+    "car": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::car.car"
+    }
+  }
+}

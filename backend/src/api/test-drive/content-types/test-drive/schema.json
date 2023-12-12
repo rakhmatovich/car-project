@@ -1,0 +1,24 @@
+{
+  "kind": "collectionType",
+  "collectionName": "test_drives",
+  "info": {
+    "singularName": "test-drive",
+    "pluralName": "test-drives",
+    "displayName": "Test drive"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "title": {
+      "type": "string"
+    },
+    "cars": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::car.car",
+      "mappedBy": "test_drive"
+    }
+  }
+}

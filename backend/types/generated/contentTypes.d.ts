@@ -677,6 +677,185 @@ export interface PluginI18NLocale extends Schema.CollectionType {
   };
 }
 
+export interface ApiCarCar extends Schema.CollectionType {
+  collectionName: 'cars';
+  info: {
+    singularName: 'car';
+    pluralName: 'cars';
+    displayName: 'Car';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    model: Attribute.String;
+    image: Attribute.Media;
+    price: Attribute.BigInteger;
+    equipment: Attribute.Relation<
+      'api::car.car',
+      'oneToMany',
+      'api::equipment.equipment'
+    >;
+    test_drive: Attribute.Relation<
+      'api::car.car',
+      'manyToOne',
+      'api::test-drive.test-drive'
+    >;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<'api::car.car', 'oneToOne', 'admin::user'> &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<'api::car.car', 'oneToOne', 'admin::user'> &
+      Attribute.Private;
+  };
+}
+
+export interface ApiEquipmentEquipment extends Schema.CollectionType {
+  collectionName: 'equipments';
+  info: {
+    singularName: 'equipment';
+    pluralName: 'equipments';
+    displayName: 'Equipment';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    name: Attribute.String;
+    price: Attribute.BigInteger;
+    engine: Attribute.Text;
+    descriptions: Attribute.Text;
+    car: Attribute.Relation<
+      'api::equipment.equipment',
+      'manyToOne',
+      'api::car.car'
+    >;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::equipment.equipment',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::equipment.equipment',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
+export interface ApiKiaOfferKiaOffer extends Schema.CollectionType {
+  collectionName: 'kia_offers';
+  info: {
+    singularName: 'kia-offer';
+    pluralName: 'kia-offers';
+    displayName: 'Kia offer';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    heading: Attribute.Text;
+    title: Attribute.Text;
+    subtitle: Attribute.Text;
+    image: Attribute.Media;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::kia-offer.kia-offer',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::kia-offer.kia-offer',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
+export interface ApiTestDriveTestDrive extends Schema.CollectionType {
+  collectionName: 'test_drives';
+  info: {
+    singularName: 'test-drive';
+    pluralName: 'test-drives';
+    displayName: 'Test drive';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    title: Attribute.String;
+    cars: Attribute.Relation<
+      'api::test-drive.test-drive',
+      'oneToMany',
+      'api::car.car'
+    >;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::test-drive.test-drive',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::test-drive.test-drive',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
+export interface ApiTestDriveRegistrationTestDriveRegistration
+  extends Schema.CollectionType {
+  collectionName: 'test_drive_registrations';
+  info: {
+    singularName: 'test-drive-registration';
+    pluralName: 'test-drive-registrations';
+    displayName: 'Test drive registration';
+    description: '';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    name: Attribute.String;
+    phone: Attribute.String;
+    comment: Attribute.Text;
+    car: Attribute.Relation<
+      'api::test-drive-registration.test-drive-registration',
+      'oneToOne',
+      'api::car.car'
+    >;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::test-drive-registration.test-drive-registration',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::test-drive-registration.test-drive-registration',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
 declare module '@strapi/types' {
   export module Shared {
     export interface ContentTypes {
@@ -693,6 +872,11 @@ declare module '@strapi/types' {
       'plugin::users-permissions.role': PluginUsersPermissionsRole;
       'plugin::users-permissions.user': PluginUsersPermissionsUser;
       'plugin::i18n.locale': PluginI18NLocale;
+      'api::car.car': ApiCarCar;
+      'api::equipment.equipment': ApiEquipmentEquipment;
+      'api::kia-offer.kia-offer': ApiKiaOfferKiaOffer;
+      'api::test-drive.test-drive': ApiTestDriveTestDrive;
+      'api::test-drive-registration.test-drive-registration': ApiTestDriveRegistrationTestDriveRegistration;
     }
   }
 }
