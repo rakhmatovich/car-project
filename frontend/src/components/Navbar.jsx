@@ -7,8 +7,7 @@ export const Navbar = () => {
       <div className="nav-left">
         <Link to="/models">Модели</Link>
         <Link to="/pokupka">Выбор и покупки</Link>
-        <Link>Конфигуратор</Link>
-        <Link>Спецпредложения</Link>
+        <Link to="/vlad">Владельцам</Link>
       </div>
 
       <Link to="/">
@@ -19,7 +18,6 @@ export const Navbar = () => {
         <Link to="/dileri">Дилеры</Link>
         <Link to="/test-drive">Запись на тест драйв</Link>
         <Link to="/mir">Мир Kia</Link>
-        <Link to="/vlad">Владельцам</Link>
       </div>
     </div>
   );
